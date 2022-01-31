@@ -9,12 +9,12 @@ script:
   - docker run -e CI=true codiemullins/complex npm test -- --coverage
 
 after_success:
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker build -t codiemullins/multi-client ./client
   - docker build -t codiemullins/multi-nginx ./nginx
   - docker build -t codiemullins/multi-server ./server
   - docker build -t codiemullins/multi-worker ./worker
-  # Log in to the docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
   - docker push codiemullins/multi-client
   - docker push codiemullins/multi-nginx
