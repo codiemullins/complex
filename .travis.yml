@@ -20,3 +20,15 @@ after_success:
   - docker push codiemullins/multi-nginx
   - docker push codiemullins/multi-server
   - docker push codiemullins/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  region: us-east-1
+  app: multi-docker
+  env: Multidocker-env1
+  bucket: elasticbeanstalk-us-east-1-687710132501
+  bucket_path: docker-mutli
+  on:
+    branch: main
