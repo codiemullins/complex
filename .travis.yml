@@ -27,7 +27,7 @@ deploy:
   secret_access_key: $AWS_SECRET_KEY
   region: us-east-1
   app: multi-docker
-  env: Multidocker-env1
+  env: Multidocker-env-1
   bucket: elasticbeanstalk-us-east-1-687710132501
   bucket_path: docker-mutli
   on:
